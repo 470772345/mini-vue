@@ -42,8 +42,10 @@
       function addAge(){
         vm.$data.age++
       }
+      const namMap = ['帅气','聪明','大气','幽默','乐观','强壮']
       function changeName(){
-        vm.name = '茶叶蛋' + Math.random() * 10
+        
+        vm.name = '茶叶蛋' + (namMap[ (Math.floor(Math.random() * 10)) ] || '好吃')
       }
      
       
