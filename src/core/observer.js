@@ -1,4 +1,4 @@
-
+// import { Dep } from "./dep"
 /**
  * @description Observer类会通过递归的方式把一个对象的所有属性都转化成可观测对象
  * Observer class that is attached to each observed
@@ -6,9 +6,12 @@
  * object's property keys into getter/setters that
  * collect dependencies and dispatch updates.
  */
-class Observer {
+ class Observer {
    constructor(value){
+     console.log('Observer')
      this.value = value
+     // 用来收集依赖
+     this.dep = new Dep()
      if(Array.isArray(value)){
        this.observeArray(value)
      }else{
@@ -49,13 +52,19 @@ function defindReactive(obj,key,val){
   if ((!getter || setter) && arguments.length === 2) {
     val = obj[key]
   }
+
+  const dep = new Dep()
+
   Object.defineProperty(obj,key,{
     enumerable:true,
     configurable:true,
     get:function reactiveGetter(){
       const value = getter ? getter.call(obj) : val
       console.log('get-->',value)
-      // TODO: 收集依赖
+      // 收集依赖
+      if (Dep.target) {
+        dep.depend()
+      }
        return value
     },
     set: function reactiveSetter(newVal) {
@@ -69,7 +78,8 @@ function defindReactive(obj,key,val){
       } else {
         val = newVal
       }
-      //TODO: 派发更新
+      // 派发更新
+      dep.notify()
     }
   })
 }

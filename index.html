@@ -6,16 +6,49 @@
   <title>vue模拟实现</title>
   <body>
     <div id="app">
-      {{foo}} 
-      <div v-text="foo"></div>
-        <!-- <input id="input-id" value="111" on-change="a" />  -->
+      <p>mini Vue---- 茶叶蛋学习vue</p>
+      
+      <span>name:</span>{{name}} <br />
+     <span>age:</span> {{age}} <br />
+      <p>v 指令</p>
+      <div v-text="name"></div>
+      <p>v-model </p>
+      <input v-model="age" type="text" />
+      <button onClick="addAge()">age +1</button>
+      <button onClick="changeName()">随机名字</button>
+      <!-- <div v-text="name">  {{name}} </div>
+        <input id="input-id" value="111" on-change="a" /> 
+        <p id="age">0</p>
+        <button onClick="addAge()">age +1</button>
+        <div v-text="age"></div>
+        <input v-model="age" type="text" /> -->
     </div>
   </body>
+  <script src="./src/core/dep.js"></script>
+  <script src="./src/core/watcher.js"></script>
+  <script src="./src/core/compiler.js"></script>
+  <script src="./src/core/observer.js"></script>
+  <script src="./vue.js"></script> 
+
   <script type="text/javascript">
-     window.addEventListener('input',function(val){
-       console.log(val)
-     })
+      let vm = new Vue({
+        el: '#app',
+        data: {
+          name: '茶叶蛋',
+          age: 18,
+        },
+      })
+      console.log(vm)
+      function addAge(){
+        vm.$data.age++
+      }
+      function changeName(){
+        vm.name = '茶叶蛋' + Math.random() * 10
+      }
+     
+      
   </script>
+
 </html>
 
 

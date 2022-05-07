@@ -1,4 +1,4 @@
-
+// 这个是单独的 !!!!!
 // 类MVVM 模式
 // 1. 对data的劫持 defindProperty
 // 2. watch 对象
