@@ -1,4 +1,4 @@
-# mini-vue
+# mini-vue (vue2.x)
 模拟vue的实现,深入解析响应式原理
 
 ### 目前实现简单的数据联动,与 v-text 指令 v-model
